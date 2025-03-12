@@ -40,7 +40,7 @@ extra_compile_args = {
 }
 
 setup(
-    name="torchsparse",
+    name="torchsparse_ad102",
     version=version,
     packages=find_packages(),
     ext_modules=[
