@@ -164,7 +164,6 @@ __global__ void __launch_bounds__(64) conv_forward_cuda_setting1_mode0_f16f16f32
     }
 
     __syncthreads();
-    __syncthreads();
     for (int ax0_0 = 0; ax0_0 < 4; ++ax0_0)
     {
 
@@ -2034,7 +2033,6 @@ at::Tensor conv_forward_implicit_gemm_cuda(
   auto out_in_map = _out_in_map.data_ptr<int>();
   bool is_half = _in_feats.scalar_type() == at::ScalarType::Half;
   bool is_bf16 = _in_feats.scalar_type() == at::ScalarType::BFloat16;
-  printf("is_half: %d, is_bf16: %d\n", is_half, is_bf16);
   if (is_half)
   {
     if (!allow_fp16)
@@ -2045,19 +2043,10 @@ at::Tensor conv_forward_implicit_gemm_cuda(
   }
   else if (is_bf16)
   {
-    printf("Invoking bf16 kernnels!!!!\n");
     if (!allow_bf16)
     {
       throw std::runtime_error("BF16 kernels are not supported for implicit GEMM now for SM80-.");
     }
-    // printf("GETTING POINTERS\n");
-
-    // auto in_feats = reinterpret_cast<__nv_bfloat16 *>(_in_feats.data_ptr<at::BFloat16>());
-    // printf("GOT IN_FEATS\n");
-    // auto kernel = reinterpret_cast<__nv_bfloat16 *>(_kernel.data_ptr<at::BFloat16>());
-    // printf("GOT KERNEL\n");
-    // auto out_feats = reinterpret_cast<__nv_bfloat16 *>(_out_feats.data_ptr<at::BFloat16>());
-    // printf("GOT OUT_FEATS\n");
     launch_half_kernels<__nv_bfloat16>(num_out_channels, num_in_channels, num_out_feats, kernel_volume, out_in_map, _in_feats, _kernel, _out_feats);
   }
   else if (is_tf)
