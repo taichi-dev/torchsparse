@@ -64,6 +64,9 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             if torch.float16 in [input.dtype, weight.dtype]:
                 input = input.to(torch.float16)
                 weight = weight.to(torch.float16)
+            if torch.bfloat16 in [input.dtype, weight.dtype]:
+                input = input.to(torch.bfloat16)
+                weight = weight.to(torch.bfloat16)
 
             # input, weight, out_in_map, out_feats
             num_out_feats = sizes[1] if not transposed else sizes[0]
@@ -78,6 +81,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
                     num_out_channels,
                     torchsparse.backends.allow_tf32,
                     torchsparse.backends.allow_fp16,
+                    torchsparse.backends.allow_bf16,
                 )
             else:
                 output = torchsparse.backend.conv_forward_implicit_gemm_sorted_cuda(
