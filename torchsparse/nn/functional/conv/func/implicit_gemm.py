@@ -132,7 +132,8 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
         kernel_volume, ic, oc = weight.size()
 
         if grad_output.device.type == "cuda":
-            if kernel_volume < 32:  # sort mode
+            # temporary fix for kernel volume < 32, workaround this to else branch
+            if kernel_volume < 0:  # sort mode
                 # dgrad
                 grad_input = torchsparse.backend.conv_forward_implicit_gemm_sorted_cuda(
                     grad_output,
