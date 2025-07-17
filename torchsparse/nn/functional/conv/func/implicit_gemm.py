@@ -98,7 +98,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
                 )
         else:
             raise NotImplementedError
-        ctx.for_backwards = (
+        ctx.save_for_backward(
             input,
             weight,
             out_in_map_bwd,
@@ -106,8 +106,8 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             reduced_sorted_mask_bwd_wgrad,
             reduced_sorted_mask_bwd_dgrad,
             reorder_loc_bwd,
-            transposed,
         )
+        ctx.transposed = transposed
         return output.to(weight.dtype)
 
     @staticmethod
@@ -121,8 +121,8 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             reduced_sorted_mask_bwd_wgrad,
             reduced_sorted_mask_bwd_dgrad,
             reorder_loc_bwd,
-            transposed,
-        ) = ctx.for_backwards
+        ) = ctx.saved_tensors
+        transposed = ctx.transposed
 
         grad_output = grad_output.contiguous()
 
