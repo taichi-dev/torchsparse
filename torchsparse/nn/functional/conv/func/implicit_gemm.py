@@ -30,20 +30,20 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             reduced_sorted_mask = kmap["reduced_sorted_mask"]
             reorder_loc = kmap["reorder_loc"]
             out_in_map_bwd = kmap["out_in_map_bwd"]
-            reorder_out_in_map_bwd = kmap["reorder_out_in_map_bwd"]
-            reduced_sorted_mask_bwd_wgrad = kmap["reduced_sorted_mask_bwd_wgrad"]
-            reduced_sorted_mask_bwd_dgrad = kmap["reduced_sorted_mask_bwd_dgrad"]
-            reorder_loc_bwd = kmap["reorder_loc_bwd"]
+            # reorder_out_in_map_bwd = kmap["reorder_out_in_map_bwd"]
+            # reduced_sorted_mask_bwd_wgrad = kmap["reduced_sorted_mask_bwd_wgrad"]
+            # reduced_sorted_mask_bwd_dgrad = kmap["reduced_sorted_mask_bwd_dgrad"]
+            # reorder_loc_bwd = kmap["reorder_loc_bwd"]
         else:
             out_in_map = kmap["out_in_map_t"]
             reorder_out_in_map = kmap["reorder_out_in_map_t"]
             reduced_sorted_mask = kmap["reduced_sorted_mask_t"]
             reorder_loc = kmap["reorder_loc_t"]
             out_in_map_bwd = kmap["out_in_map_bwd_t"]
-            reorder_out_in_map_bwd = kmap["reorder_out_in_map_bwd_t"]
-            reduced_sorted_mask_bwd_wgrad = kmap["reduced_sorted_mask_bwd_wgrad_t"]
-            reduced_sorted_mask_bwd_dgrad = kmap["reduced_sorted_mask_bwd_dgrad_t"]
-            reorder_loc_bwd = kmap["reorder_loc_bwd_t"]
+            # reorder_out_in_map_bwd = kmap["reorder_out_in_map_bwd_t"]
+            # reduced_sorted_mask_bwd_wgrad = kmap["reduced_sorted_mask_bwd_wgrad_t"]
+            # reduced_sorted_mask_bwd_dgrad = kmap["reduced_sorted_mask_bwd_dgrad_t"]
+            # reorder_loc_bwd = kmap["reorder_loc_bwd_t"]
 
         ifsort = config["ifsort"]
 
@@ -102,10 +102,10 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             input,
             weight,
             out_in_map_bwd,
-            reorder_out_in_map_bwd,
-            reduced_sorted_mask_bwd_wgrad,
-            reduced_sorted_mask_bwd_dgrad,
-            reorder_loc_bwd,
+            # reorder_out_in_map_bwd,
+            # reduced_sorted_mask_bwd_wgrad,
+            # reduced_sorted_mask_bwd_dgrad,
+            # reorder_loc_bwd,
         )
         ctx.transposed = transposed
         return output.to(weight.dtype)
@@ -117,10 +117,10 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             input,
             weight,
             out_in_map_bwd,
-            reorder_out_in_map_bwd,
-            reduced_sorted_mask_bwd_wgrad,
-            reduced_sorted_mask_bwd_dgrad,
-            reorder_loc_bwd,
+            # reorder_out_in_map_bwd,
+            # reduced_sorted_mask_bwd_wgrad,
+            # reduced_sorted_mask_bwd_dgrad,
+            # reorder_loc_bwd,
         ) = ctx.saved_tensors
         transposed = ctx.transposed
 
