@@ -30,6 +30,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             reduced_sorted_mask = kmap["reduced_sorted_mask"]
             reorder_loc = kmap["reorder_loc"]
             out_in_map_bwd = kmap["out_in_map_bwd"]
+            # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
             # reorder_out_in_map_bwd = kmap["reorder_out_in_map_bwd"]
             # reduced_sorted_mask_bwd_wgrad = kmap["reduced_sorted_mask_bwd_wgrad"]
             # reduced_sorted_mask_bwd_dgrad = kmap["reduced_sorted_mask_bwd_dgrad"]
@@ -40,6 +41,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             reduced_sorted_mask = kmap["reduced_sorted_mask_t"]
             reorder_loc = kmap["reorder_loc_t"]
             out_in_map_bwd = kmap["out_in_map_bwd_t"]
+            # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
             # reorder_out_in_map_bwd = kmap["reorder_out_in_map_bwd_t"]
             # reduced_sorted_mask_bwd_wgrad = kmap["reduced_sorted_mask_bwd_wgrad_t"]
             # reduced_sorted_mask_bwd_dgrad = kmap["reduced_sorted_mask_bwd_dgrad_t"]
@@ -102,6 +104,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             input,
             weight,
             out_in_map_bwd,
+            # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
             # reorder_out_in_map_bwd,
             # reduced_sorted_mask_bwd_wgrad,
             # reduced_sorted_mask_bwd_dgrad,
@@ -117,6 +120,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
             input,
             weight,
             out_in_map_bwd,
+            # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
             # reorder_out_in_map_bwd,
             # reduced_sorted_mask_bwd_wgrad,
             # reduced_sorted_mask_bwd_dgrad,

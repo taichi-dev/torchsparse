@@ -193,6 +193,7 @@ def build_kernel_map(
             out_in_map_bwd = F.convert_transposed_out_in_map(
                 kmap["out_in_map"], make_divisible(kmap["sizes"][0], cta_M)
             )
+            # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
             # bitmask_bwd = torchsparse.backend.derive_bitmask_from_out_in_map(
             #     out_in_map_bwd, split_mask_num_bwd, kmap["sizes"][0]
             # )
@@ -214,6 +215,7 @@ def build_kernel_map(
             reduced_sorted_mask_bwd_dgrad = None
             reorder_loc_bwd = None
         kmap["out_in_map_bwd"] = out_in_map_bwd
+        # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
         # kmap["reorder_out_in_map_bwd"] = reorder_out_in_map_bwd
         # kmap["reduced_sorted_mask_bwd_wgrad"] = reduced_sorted_mask_bwd_wgrad
         # kmap["reduced_sorted_mask_bwd_dgrad"] = reduced_sorted_mask_bwd_dgrad
@@ -237,6 +239,7 @@ def transpose_kernel_map(
     if ifsort:
         if training:
             out_in_map_bwd = kmap["out_in_map"]
+            # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
             # reorder_out_in_map_bwd = kmap["reorder_out_in_map"]
             # reorder_loc_bwd = kmap["reorder_loc"]
             # sorted_mask_bwd = kmap["sorted_mask"]
@@ -247,6 +250,7 @@ def transpose_kernel_map(
             #     sorted_mask_bwd, cta_M
             # )
             kmap["out_in_map_bwd_t"] = out_in_map_bwd
+            # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
             # kmap["reorder_out_in_map_bwd_t"] = reorder_out_in_map_bwd
             # kmap["reduced_sorted_mask_bwd_wgrad_t"] = reduced_sorted_mask_bwd_wgrad
             # kmap["reduced_sorted_mask_bwd_dgrad_t"] = reduced_sorted_mask_bwd_dgrad
@@ -275,6 +279,7 @@ def transpose_kernel_map(
     else:
         if training:
             out_in_map_bwd = kmap["out_in_map"]
+            # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
             # bitmask_bwd = torchsparse.backend.derive_bitmask_from_out_in_map(
             #     out_in_map_bwd, split_mask_num_bwd, kmap["sizes"][1]
             # )
@@ -290,6 +295,7 @@ def transpose_kernel_map(
             #     sorted_mask_bwd, cta_M
             # )
             kmap["out_in_map_bwd_t"] = out_in_map_bwd
+            # TODO: add reorder_out_in_map_bwd, reduced_sorted_mask_bwd_wgrad, reduced_sorted_mask_bwd_dgrad, reorder_loc_bwd
             # kmap["reorder_out_in_map_bwd_t"] = reorder_out_in_map_bwd
             # kmap["reduced_sorted_mask_bwd_wgrad_t"] = reduced_sorted_mask_bwd_wgrad
             # kmap["reduced_sorted_mask_bwd_dgrad_t"] = reduced_sorted_mask_bwd_dgrad
