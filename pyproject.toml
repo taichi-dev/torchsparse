@@ -1,0 +1,65 @@
+[project]
+name = "torchsparse_ad102"
+dynamic = ["version"]
+description = "A high-performance sparse deep learning library"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "MIT HAN Lab", email = "hanlab.mit@gmail.com"}
+]
+maintainers = [
+    {name = "MIT HAN Lab", email = "hanlab.mit@gmail.com"}
+]
+keywords = ["sparse", "convolution", "pytorch", "3d", "point-cloud"]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy",
+    "backports.cached_property",
+    "tqdm",
+    "typing-extensions",
+    "wheel",
+    "rootpath",
+    "torch",
+    "torchvision",
+]
+
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "wheel",
+    "torch",
+    "pybind11",
+    "ninja"
+]
+build-backend = "setuptools.build_meta"
+
+
+[tool.setuptools]
+packages = ["torchsparse"]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "torchsparse.version.__version__"}
+
+[tool.setuptools.package-data]
+"torchsparse.backend" = ["*.cpp", "*.cu", "*.h", "*.cuh"]
+
+[tool.yapf]
+based_on_style = "google"
+spaces_around_power_operator = true
+split_before_arithmetic_operator = true
+split_before_logical_operator = true
+split_before_bitwise_operator = true
+
+[tool.isort]
+known_first_party = ["torchsparse"]
+
+[tool.pydocstyle]
+convention = "google"
+
+[tool.flake8]
+select = ["B", "C", "D", "E", "F", "P", "T4", "W", "B9"]
+ignore = ["D10", "E501", "E722", "W503"]
+per-file-ignores = [
+    "__init__.py:F401,F403"
+] 
