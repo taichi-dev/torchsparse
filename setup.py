@@ -41,7 +41,8 @@ def build_extensions():
         )
     ]
 
-os.environ['MAX_JOBS'] = '32'
+os.environ['MAX_JOBS'] = '16'
+os.environ['FORCE_CUDA'] = '1'
 setup(
     ext_modules=build_extensions(),
     cmdclass={"build_ext": BuildExtension},
