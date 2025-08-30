@@ -22,7 +22,7 @@ def make_ntuple(
 
 @lru_cache()
 def make_tensor(x: Tuple[int, ...], dtype: torch.dtype, device) -> torch.Tensor:
-    return torch.tensor(x, dtype=dtype, device=device)
+    return torch.tensor(x, dtype=dtype).to(device=device, non_blocking=True)
 
 
 def make_divisible(x: int, divisor: int):
