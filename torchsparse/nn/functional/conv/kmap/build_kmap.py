@@ -61,6 +61,7 @@ def build_kernel_map(
 
     stride = make_ntuple(stride, ndim=3)
     kernel_size = make_ntuple(kernel_size, ndim=3)
+    kernel_volume = kernel_size[0] * kernel_size[1] * kernel_size[2]
     padding = make_ntuple(padding, ndim=3)
     if spatial_range is not None:
         new_spatial_range = [0, 0, 0]
@@ -136,6 +137,7 @@ def build_kernel_map(
                 input_node_num,
                 _coords,
                 kernel_size,
+                kernel_volume,
                 stride,
                 padding=padding,
                 spatial_range=new_spatial_range,
@@ -153,6 +155,7 @@ def build_kernel_map(
                 input_node_num,
                 _coords,
                 kernel_size,
+                kernel_volume,
                 stride,
                 padding=padding,
                 spatial_range=new_spatial_range,
@@ -168,6 +171,7 @@ def build_kernel_map(
                 input_node_num,
                 _coords,
                 kernel_size,
+                kernel_volume,
                 stride,
                 padding=padding,
                 spatial_range=new_spatial_range,

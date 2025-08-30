@@ -10,6 +10,7 @@ def build_kmap_implicit_GEMM_hashmap(
     input_node_num: int,
     _coords: torch.Tensor,
     kernel_size: torch.Tensor,
+    kernel_volume: int,
     stride: torch.Tensor,
     padding: torch.Tensor,
     spatial_range: Optional[Tuple[int]] = None,
@@ -38,8 +39,6 @@ def build_kmap_implicit_GEMM_hashmap(
             coords = F.spupsample_generative(
                 _coords, stride, kernel_size, padding, spatial_range
             )
-
-    kernel_volume = torch.prod(kernel_size)
 
     to_insert = False
     if kmap["hashmap_keys"] is None:
@@ -110,6 +109,7 @@ def build_kmap_Gather_Scatter_hashmap(
     input_node_num: int,
     _coords: torch.Tensor,
     kernel_size: torch.Tensor,
+    kernel_volume: int,
     stride: torch.Tensor,
     padding: torch.Tensor,
     spatial_range: Optional[Tuple[int]] = None,
@@ -124,6 +124,7 @@ def build_kmap_Gather_Scatter_hashmap(
         input_node_num,
         _coords,
         kernel_size,
+        kernel_volume,
         stride,
         padding,
         spatial_range,
@@ -161,6 +162,7 @@ def build_kmap_Fetch_on_Demand_hashmap(
     input_node_num: int,
     _coords: torch.Tensor,
     kernel_size: torch.Tensor,
+    kernel_volume: int,
     stride: torch.Tensor,
     padding: torch.Tensor,
     spatial_range: Optional[Tuple[int]] = None,
@@ -175,6 +177,7 @@ def build_kmap_Fetch_on_Demand_hashmap(
         input_node_num,
         _coords,
         kernel_size,
+        kernel_volume,
         stride,
         padding,
         spatial_range,
