@@ -161,7 +161,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
                             reorder_out_in_map_bwd,
                             reduced_sorted_mask_bwd_wgrad,
                             reorder_loc_bwd,
-                            32,
+                            1,
                             torchsparse.backends.allow_tf32,
                             torchsparse.backends.allow_fp16,
                             torchsparse.backends.allow_bf16
@@ -192,7 +192,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
                             grad_output,
                             input,
                             out_in_map_bwd,
-                            32,
+                            1,
                             torchsparse.backends.allow_tf32,
                             torchsparse.backends.allow_fp16,
                             torchsparse.backends.allow_bf16
