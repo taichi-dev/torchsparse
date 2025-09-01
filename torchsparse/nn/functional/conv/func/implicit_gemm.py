@@ -149,7 +149,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
                     input.size(1),
                     torchsparse.backends.allow_tf32,
                     torchsparse.backends.allow_fp16,
-                    torchsparse.backends.allow_bf16,
+                    torchsparse.backends.allow_bf16
                 )
 
                 # wgrad
@@ -164,7 +164,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
                             32,
                             torchsparse.backends.allow_tf32,
                             torchsparse.backends.allow_fp16,
-                            torchsparse.backends.allow_bf16,
+                            torchsparse.backends.allow_bf16
                         )
                     )
                     .reshape(kernel_volume, oc, ic)
@@ -182,6 +182,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
                     input.size(1),
                     torchsparse.backends.allow_tf32,
                     torchsparse.backends.allow_fp16,
+                    torchsparse.backends.allow_bf16,
                 )
 
                 # wgrad
@@ -194,6 +195,7 @@ class ImplicitGEMMConvolutionFuntion(Function):  # TorchSparse++
                             32,
                             torchsparse.backends.allow_tf32,
                             torchsparse.backends.allow_fp16,
+                            torchsparse.backends.allow_bf16
                         )
                     )
                     .reshape(kernel_volume, oc, ic)
