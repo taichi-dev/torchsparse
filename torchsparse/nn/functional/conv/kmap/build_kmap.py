@@ -89,6 +89,7 @@ def build_kernel_map(
                 input_node_num,
                 _coords,
                 kernel_size,
+                kernel_volume,
                 stride,
                 padding=padding,
                 spatial_range=new_spatial_range,
@@ -104,6 +105,7 @@ def build_kernel_map(
                 input_node_num,
                 _coords,
                 kernel_size,
+                kernel_volume,
                 stride,
                 padding=padding,
                 spatial_range=new_spatial_range,
@@ -117,6 +119,7 @@ def build_kernel_map(
                 input_node_num,
                 _coords,
                 kernel_size,
+                kernel_volume,
                 stride,
                 padding=padding,
                 spatial_range=new_spatial_range,
@@ -130,7 +133,6 @@ def build_kernel_map(
             )
 
     elif mode == "hashmap":
-
         if dataflow == Dataflow.ImplicitGEMM:
             kmap = build_kmap_implicit_GEMM_hashmap(
                 kmap,

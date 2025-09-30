@@ -12,6 +12,7 @@ def build_kmap_implicit_GEMM_hashmap_on_the_fly(
     input_node_num: int,
     _coords: torch.Tensor,
     kernel_size: torch.Tensor,
+    kernel_volume: int,
     stride: torch.Tensor,
     padding: torch.Tensor,
     spatial_range: Optional[Tuple[int]] = None,
@@ -50,9 +51,9 @@ def build_kmap_implicit_GEMM_hashmap_on_the_fly(
         func = torchsparse.backend.build_kernel_map_downsample_hashmap
     to_insert = False
 
-    assert (
-        torchsparse.backends.hash_rsv_ratio >= 2
-    ), f"hash_rsv_ratio should be no less than 2, now {torchsparse.backends.hash_rsv_ratio}."
+    assert torchsparse.backends.hash_rsv_ratio >= 2, (
+        f"hash_rsv_ratio should be no less than 2, now {torchsparse.backends.hash_rsv_ratio}."
+    )
     hashmap_capacity = max(
         512, int(torchsparse.backends.hash_rsv_ratio * _coords.shape[0])
     )
@@ -75,6 +76,7 @@ def build_kmap_implicit_GEMM_hashmap_on_the_fly(
         coords_min,
         coords_max,
         kernel_size,
+        kernel_volume,
         stride,
         padding,
         to_insert,
@@ -114,18 +116,19 @@ def build_kmap_Gather_Scatter_hashmap_on_the_fly(
     input_node_num: int,
     _coords: torch.Tensor,
     kernel_size: torch.Tensor,
+    kernel_volume: int,
     stride: torch.Tensor,
     padding: torch.Tensor,
     spatial_range: Optional[Tuple[int]] = None,
     cta_M: int = 128,
     subm: bool = False,
 ) -> Dict:
-
     kmap = build_kmap_implicit_GEMM_hashmap_on_the_fly(
         kmap,
         input_node_num,
         _coords,
         kernel_size,
+        kernel_volume,
         stride,
         padding,
         spatial_range,
@@ -161,18 +164,19 @@ def build_kmap_Fetch_on_Demand_hashmap_on_the_fly(
     input_node_num: int,
     _coords: torch.Tensor,
     kernel_size: torch.Tensor,
+    kernl_volume: int,
     stride: torch.Tensor,
     padding: torch.Tensor,
     spatial_range: Optional[Tuple[int]] = None,
     cta_M: int = 128,
     subm: bool = False,
 ) -> Dict:
-
     kmap = build_kmap_implicit_GEMM_hashmap_on_the_fly(
         kmap,
         input_node_num,
         _coords,
         kernel_size,
+        kernl_volume,
         stride,
         padding,
         spatial_range,
